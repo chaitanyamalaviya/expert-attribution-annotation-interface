@@ -10,15 +10,16 @@ const Answerbox= (props) => {
         props.setState(newState)
     }
     const redDot = () => {
-        if (props.state.support === 'Partial') {
-            return (<div style={{color: 'red', marginLeft: '3px', fontSize: '17px'}}> * </div>)
-        }
-        else {
-            return <></>
-        }
+        // if (props.state.support === 'Partial') {
+        //     return (<div style={{color: 'red', marginLeft: '3px', fontSize: '17px'}}> * </div>)
+        // }
+        // else {
+        //     return <></>
+        // }
+        return <></>
     }
     return (
-    <Card style={{ width: '40rem', marginTop: '20px', textAlign: 'left'}}>
+    <Card style={{ width: '80%', marginTop: '20px', textAlign: 'left'}}>
         <Card.Body>
             <Card.Title>
                 <div style={{display: 'flex', flexDirection: 'row'}}>
@@ -26,13 +27,13 @@ const Answerbox= (props) => {
                     {redDot()}
                 </div>
             </Card.Title>
-            <Card.Text>
+            {/* <Card.Text>
                 <Form style={{marginTop: '21px', width: '400px'}}>
                     <Form.Group className="mb-3">
                         <Form.Control as='textarea' value={props.state.reason_missing_support} style={{width: '500px', height: '200px'}}onChange={changeFunction}/>
                     </Form.Group>
                 </Form>
-            </Card.Text>
+            </Card.Text> */}
         </Card.Body>
     </Card>
     )

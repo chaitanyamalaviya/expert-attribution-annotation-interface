@@ -1,6 +1,17 @@
 import React from 'react'
 import {Card} from 'react-bootstrap';
 
+function NewlineText({ text }) {
+    const newText = text.split('\n').map((str, index, array) => 
+      index === array.length - 1 ? str : <>
+        {str}
+        <br />
+      </>
+    );
+  
+    return <>{newText}</>;
+}
+
 const Textbox = (props) => {
     const displayEvidence = () => {
         const result = []
@@ -17,11 +28,11 @@ const Textbox = (props) => {
     }
 
     return (
-        <Card style={{ width: '40rem', marginTop: '20px', textAlign: 'left'}}>
+        <Card style={{ width: '80%', marginTop: '20px', textAlign: 'left'}}>
             <Card.Body>
-                <Card.Title> {props.title + ":"} </Card.Title>
+                <Card.Title style={{ fontWeight: 'bold !important' }}> {props.title + ":"} </Card.Title>
                 <Card.Text>
-                    {props.title === 'Evidence' ? displayEvidence() : props.text}
+                    {props.title === 'Evidence' ? displayEvidence() : <NewlineText text={props.text} />}
                 </Card.Text>
             </Card.Body>
         </Card>

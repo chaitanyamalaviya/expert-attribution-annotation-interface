@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3001
 mongoose.set('strictQuery',false)
 mongoose.connect(process.env.MONGODB_URI)
 
-const Question = require('./schema.js')
+const Task = require('./schema.js')
 
 app.use(express.json())
 app.use((req, res, next) => {
@@ -28,32 +28,32 @@ app.use(express.static('build'))
 // })
 
 // route redirection for react router
-app.get('/questions', (request, response) => {
+app.get('/tasks', (request, response) => {
     response.sendFile(path.join(__dirname, '/build/index.html'))
 })
 
-// get all questions and claim data from a specific annotator (given an id)
-app.get('/api/questions/:annotator_id', (request, response) => {
+// get all tasks from a specific annotator (given an id)
+app.get('/api/tasks/:annotator_id', (request, response) => {
     console.log('here')
-    Question.find({annotator_id: request.params.annotator_id}).then(questions => {
-        response.json(questions)
+    Task.find({annotator_id: request.params.annotator_id}).then(tasks => {
+        response.json(tasks)
     }).catch(error => response.json(error))
 })
 
-// annotate question
-app.patch('/api/annotate/question/:question_id', (request, response) => {
+// annotate task
+app.patch('/api/annotate/task/:task_id', (request, response) => {
     const body = request.body
-    Question.findByIdAndUpdate(request.params.question_id, {$set: {'completed' : body.completed, 'usefulness' : body.usefulness, 'revised_answer': body.revised_answer, 'time_spent': body.time_spent}}).then(question => {
-        response.json(question)
+    Task.findByIdAndUpdate(request.params.task_id, {$set: {'completed' : body.completed, 'usefulness' : body.usefulness, 'revised_answer': body.revised_answer, 'time_spent': body.time_spent}}).then(task => {
+        response.json(task)
     }).catch(error => response.json(error))
 })
 
-// annotate claim
-app.patch('/api/annotate/question/:question_id/claim/:claim_id', (request, response) => {
-    const key = `claims.${request.params.claim_id}`
+// annotate example
+app.patch('/api/annotate/task/:task_id/example/:example_id', (request, response) => {
+    const key = `examples.${request.params.example_id}`
     const body = request.body
-    Question.findByIdAndUpdate(request.params.question_id, {$set: {[key + '.support']: body.support, [key + '.reason_missing_support']: body.reason_missing_support, [key + '.informativeness']: body.informativeness, [key + '.correctness']: body.correctness, [key + '.reliability']: body.reliability, [key + '.worthiness']: body.worthiness, [key + '.revised_claim'] : body.revised_claim, [key + '.revised_evidence']: body.revised_evidence}}).then(question => {
-        response.json(question)
+    Task.findByIdAndUpdate(request.params.task_id, {$set: {[key + '.structure_followed']: body.structure_followed, [key + '.lacking_depth']: body.lacking_depth, [key + '.factuality']: body.factuality, [key + '.attribution']: body.attribution, [key + '.revised_example'] : body.revised_example, [key + '.revised_evidence']: body.revised_evidence}}).then(task => {
+        response.json(task)
     }).catch(error => response.json(error))
 })
 

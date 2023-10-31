@@ -21,14 +21,14 @@ const Likert = (props) => {
     ))
 
     return (
-        <Card style={{ width: '40rem', marginTop: '20px', textAlign: 'left'}}>
+        <Card style={{ width: '80%', marginTop: '20px', textAlign: 'left'}}>
             <Card.Body>
-                <Card.Title>
+                {/* <Card.Title>
                     <div style={{display: 'flex', flexDirection: 'row'}}>
                         {props.title}
                         <div style={{color: 'red', marginLeft: '3px', fontSize: '17px'}}> * </div>
                     </div>
-                </Card.Title>
+                </Card.Title> */}
                 <Card.Text>
                     <form>
                     <fieldset id={props.title}>

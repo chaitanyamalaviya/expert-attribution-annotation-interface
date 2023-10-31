@@ -14,7 +14,7 @@ function App() {
         <div>
           <Routes>
             <Route
-              path="/questions"
+              path="/tasks"
               element={<AnnotationPage/>}
             />
             <Route

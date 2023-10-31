@@ -1,35 +1,32 @@
 const mongoose = require("mongoose");
 
-const claim = new mongoose.Schema({
-    claim_string: String,
+const example = new mongoose.Schema({
+    example_text: String,
     evidence: [String],
-    support: String,
-    reason_missing_support: String,
-    reliability: String,
-    informativeness: String,
-    worthiness: String,
-    correctness: String,
-    revised_claim: String,
+    model_name: String,
+    structure_followed: String,
+    depth: String,
+    factuality: String,
+    attribution: String,
+    revised_example: String,
     revised_evidence: String,
 });
 
-const question = new mongoose.Schema({
+const task = new mongoose.Schema({
     completed: Boolean,
-    question_string: String,
-    answer_string: String,
-    attribution: [String],
-    answer_origin_model: String,
+    task_id: String,
+    field: String,
+    specific_field: String,
+    task_objective: String,
+    task_procedure: String,
+    task_input: [String],
+    task_output: [String],
+    task_notes: String,
+    task_urls: String,
     annotator_id: String,
-    metadata: {
-        question_type: String,
-        field: String,
-        specific_field: String,
-    },
-    claims: [claim],
-    usefulness: String,
-    revised_answer: String,
+    examples: [example],
     time_spent: Number,
 });
 
 // modify the 3rd parameter to specify which MongoDB collection to use
-module.exports = mongoose.model("Question", question, "expertqa-stage2-0710");
+module.exports = mongoose.model("tasks", task, "dolomites-stage2-1030");

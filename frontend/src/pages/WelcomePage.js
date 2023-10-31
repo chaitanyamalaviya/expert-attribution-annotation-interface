@@ -8,7 +8,7 @@ const WelcomePage = () => {
   const navigate = useNavigate();
   const [prolificId, setProlificId] = useState("");
   const [alert, setAlert] = useState(false);
-  const baseUrl = `/api/questions/${prolificId}`;
+  const baseUrl = `/api/tasks/${prolificId}`;
 
   const onClick = (e) => {
     e.preventDefault();
@@ -18,14 +18,14 @@ const WelcomePage = () => {
         if (response.data.length === 0) {
           setAlert(true);
         } else {
-          const todoQuestions = response.data.filter(
-            (question) => !question.completed
+          const todoTasks = response.data.filter(
+            (task) => !task.completed
           );
-          console.log(todoQuestions);
-          if (todoQuestions.length === 0) {
+          console.log(todoTasks);
+          if (todoTasks.length === 0) {
             navigate("/submission");
           } else {
-            navigate("/questions", { state: { data: todoQuestions } });
+            navigate("/tasks", { state: { data: todoTasks } });
           }
         }
       })
@@ -40,7 +40,7 @@ const WelcomePage = () => {
           style={{ width: "50rem", marginTop: "20px", textAlign: "left" }}
         >
           {" "}
-          No questions match the provided ID in the database{" "}
+          No tasks match the provided ID in the database{" "}
         </Alert>
       );
     }
@@ -52,52 +52,27 @@ const WelcomePage = () => {
         <Card.Body>
           <Card.Title>
             {" "}
-            <b> Stage 2: Detailed Instructions </b>{" "}
+            <b>Rewriting Examples of Expert Tasks: Instructions </b>{" "}{" "}
           </Card.Title>
           <Card.Text style={{ textAlign: "left" }}>
             <p>
               {" "}
-              Thank you for your interest in our task! We are a group of
-              researchers at the University of Pennsylvania conducting a study
-              to understand how experts from various fields use AI / large
-              language models in information-seeking scenarios. We are
-              particularly interested in evaluating the accuracy and factual
-              correctness of answers produced by such systems. We are inviting
-              participants who are professionals / experts in these fields:{" "}
+              We are a group of researchers at Alphabet building AI systems that
+              can assist experts in various fields. Using your help, <b>we would 
+              like to evaluate the capability of AI models in assisting experts
+              from different fields with their tasks</b>.{" "}
             </p>
             <p>
               {" "}
-              [Anthropology / Architecture / Biology / Business / Chemistry /
-              Classical Studies / Criminology / Culinary Arts / Environmental
-              Science / Economics / Education / Engineering and Technology /
-              Geography / History / Journalism / Law / Linguistics / Literature
-              / Mathematics / Medicine / Music / Philosophy / Physics and
-              Astronomy / Political Science / Psychology / Theology / Sociology
-              / Visual Arts]{" "}
-            </p>
-            <p>
-              {" "}
-              The study will proceed in two stages and we would request you in
-              both stages.{" "}
-            </p>
-            <p>
-              <ol>
-                <li>
-                  Question Writing: We will ask you to write a question from
-                  your domain.
-                </li>
-                <li>
-                  Answer Validation and Revision: We will show you an answer
-                  produced by an AI system, and ask you to validate different
-                  aspects of this answer. We will then ask you to revise this
-                  answer to be factually correct and well-supported with
-                  citations.
-                </li>
-              </ol>
-            </p>
-            <p>
-              {" "}
-              The current task is the <b> stage 2 </b> of the study.{" "}
+              Thank you for participating in the previous part of our study
+              where you provided us with descriptions of writing tasks from
+              your field. The next part of the study involves labeling and
+              rewriting examples of these tasks. We will show you examples
+              that fit your task description and ask you to label the
+              sentences in each example for its factual correctness, citation
+              quality, and overall relevance. Based on your assessment of each
+              sentence, you will need to rewrite the sentence to overcome the
+              identified issue.{" "}
             </p>
             <p>
               <b>
@@ -107,13 +82,13 @@ const WelcomePage = () => {
               Note that we have made a best estimate for how long it should take
               to complete this task, based on a small number of participants.
               However, the time spent can vary across participants and across
-              questions. If you end up spending more time than the allocated
+              examples. If you end up spending more time than the allocated
               time, please feel free to let us know and we would be happy to
               bonus you for the extra time spent. Please prioritize{" "}
               <b> quality </b> and do not rush through the task. You will get a
-              completion code after you finish annotating all 3 questions.{" "}
+              completion code after you finish annotating all examples.{" "}
             </p>
-            <p>
+            {/* <p>
               {" "}
               <font color="maroon">
                 {" "}
@@ -131,8 +106,8 @@ const WelcomePage = () => {
                   **{" "}
                 </b>{" "}
               </font>{" "}
-            </p>
-            Please enter your prolific ID down below to begin task 2:
+            </p> */}
+            Please enter your prolific ID down below to begin:
             <Form
               style={{ marginTop: "10px", width: "400px" }}
               onSubmit={onClick}
