@@ -15,6 +15,7 @@ const WelcomePage = () => {
     axios
       .get(baseUrl)
       .then((response) => {
+        console.log(response.data);
         if (response.data.length === 0) {
           setAlert(true);
         } else {
