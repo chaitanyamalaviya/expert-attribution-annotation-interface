@@ -69,11 +69,10 @@ const WelcomePage = () => {
               where you provided us with descriptions of writing tasks from
               your field. The next part of the study involves labeling and
               rewriting examples of these tasks. We will show you examples
-              that fit your task description and ask you to label the
-              sentences in each example for its factual correctness, citation
-              quality, and overall relevance. Based on your assessment of each
-              sentence, you will need to rewrite the sentence to overcome the
-              identified issue.{" "}
+              that fit your task description and ask you to label the example
+              for its depth, structure, factual correctness and citation
+              quality. Based on your assessment of each example, you will need
+              to rewrite the example to overcome the identified issues.{" "}
             </p>
             <p>
               <b>
