@@ -52,7 +52,7 @@ app.patch('/api/annotate/task/:task_id', (request, response) => {
 app.patch('/api/annotate/task/:task_id/example/:example_id', (request, response) => {
     const key = `examples.${request.params.example_id}`
     const body = request.body
-    Task.findByIdAndUpdate(request.params.task_id, {$set: {[key + '.structure_followed']: body.structure_followed, [key + '.lacking_depth']: body.lacking_depth, [key + '.factuality']: body.factuality, [key + '.attribution']: body.attribution, [key + '.revised_example'] : body.revised_example, [key + '.revised_evidence']: body.revised_evidence}}).then(task => {
+    Task.findByIdAndUpdate(request.params.task_id, {$set: {[key + '.structure_followed']: body.structure_followed, [key + '.depth']: body.depth, [key + '.factuality']: body.factuality, [key + '.attribution']: body.attribution, [key + '.revised_example'] : body.revised_example, [key + '.revised_evidence']: body.revised_evidence}}).then(task => {
         response.json(task)
     }).catch(error => response.json(error))
 })
